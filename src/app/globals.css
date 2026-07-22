@@ -1,29 +1,62 @@
+@font-face {
+  font-family: 'PortadaLocal';
+  src: url('/fonts/PortadaARA-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PortadaLocal';
+  src: url('/fonts/PortadaARA-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PortadaLocal';
+  src: url('/fonts/PortadaARA-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PortadaLocal';
+  src: url('/fonts/PortadaARA-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PortadaLocal';
+  src: url('/fonts/PortadaARA-Extrabold.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(95.38% 0.0357 72.89);
-  --secondary-background: oklch(100% 0 0);
-  --foreground: oklch(0% 0 0);
-  --main-foreground: oklch(0% 0 0);
-  --main: oklch(72.27% 0.1894 50.19);
-  --border: oklch(0% 0 0);
-  --ring: oklch(0% 0 0);
-  --overlay: oklch(0% 0 0 / 0.8);
+  --background: #DBE7ED;
+  --secondary-background: #ffffff;
+  --foreground: #1a1a1a;
+  --main-foreground: #ffffff;
+  --main: #39829B;
+  --border: #000000;
+  --ring: #000000;
+  --overlay: rgba(0, 0, 0, 0.8);
   --shadow: 4px 4px 0px 0px var(--border);
+  --dot-color: rgba(0, 0, 0, 0.08);
 }
 
 .dark {
-  --background: oklch(26.86% 0.0327 60.06);
-  --secondary-background: oklch(23.93% 0 0);
-  --foreground: oklch(92.49% 0 0);
-  --main-foreground: oklch(0% 0 0);
-  --main: oklch(67.56% 0.1796 49.61);
-  --border: oklch(0% 0 0);
-  --ring: oklch(100% 0 0);
+  --background: #111a1e;
+  --secondary-background: #1a262c;
+  --foreground: #eef4f7;
+  --main-foreground: #ffffff;
+  --main: #3e92ad;
+  --border: #000000;
+  --ring: #ffffff;
   --shadow: 4px 4px 0px 0px var(--border);
+  --dot-color: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {
@@ -35,6 +68,7 @@
   --color-border: var(--border);
   --color-overlay: var(--overlay);
   --color-ring: var(--ring);
+  --font-sans: 'PortadaLocal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Vazirmatn', Tahoma, sans-serif;
 
   --spacing-boxShadowX: 4px;
   --spacing-boxShadowY: 4px;
@@ -42,12 +76,24 @@
   --spacing-reverseBoxShadowY: -4px;
   --radius-base: 5px;
   --shadow-shadow: var(--shadow);
-  --font-weight-base: 500;
-  --font-weight-heading: 700;
+  --font-weight-base: 300;
+  --font-weight-heading: 900;
 }
 
 body {
   background-color: var(--background);
+  background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+* {
+  font-family: 'PortadaLocal', 'Vazirmatn', Tahoma, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-weight: 900 !important;
 }
 
 body {
@@ -83,3 +129,20 @@ body::-webkit-scrollbar-thumb {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }
+
+@keyframes progressBar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-progress-bar {
+  animation: progressBar 1.6s infinite ease-in-out;
+}
+

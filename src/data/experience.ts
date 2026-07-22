@@ -6,28 +6,28 @@ const PAST_ROLES: {
   endDate: string
 }[] = [
   {
-    company: 'ACME Solutions',
-    role: 'CEO',
+    company: 'پروژه شخصی (Vibinoo)',
+    role: 'توسعه‌دهنده و طراح (Vibe Coding)',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam vel hic aspernatur molestiae exercitationem rerum reiciendis mollitia magnam harum ipsum?',
-    startDate: 'March 2023',
-    endDate: 'Now',
+      'توسعه صفر تا صد پلتفرم لایو موسیقی با رویکرد استفاده از هوش مصنوعی (Anti Gravity, Gemini, DeepSeek) به عنوان دستیار اصلی کدنویسی و طراحی رابط کاربری در Figma و Illustrator.',
+    startDate: 'مهر ۱۴۰۳',
+    endDate: 'اکنون',
   },
   {
-    company: 'Google',
-    role: 'Software Engineer',
+    company: 'پرو وان (Pro One)',
+    role: 'گرافیست / طراح گرافیک (کارآموزی)',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam vel hic aspernatur molestiae exercitationem rerum reiciendis mollitia magnam harum ipsum?',
-    startDate: 'April 2021',
-    endDate: 'March 2023',
+      'طراحی بنر، پوستر، رول‌آپ، آیکون و هویت بصری کامل برای کمپین‌های تبلیغاتی آنلاین و آفلاین؛ مدیریت محتوای گرافیکی وب‌سایت و شبکه‌های اجتماعی؛ تحلیل روندهای روز و کار حرفه‌ای با Photoshop و Illustrator.',
+    startDate: 'آذر ۱۴۰۳',
+    endDate: 'اسفند ۱۴۰۳',
   },
   {
-    company: 'Vercel',
-    role: 'Developer Advocate',
+    company: 'مجموعه ورزشی استخر مفتح',
+    role: 'گرافیست پروژه‌ای',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam vel hic aspernatur molestiae exercitationem rerum reiciendis mollitia magnam harum ipsum?',
-    startDate: 'April 2021',
-    endDate: 'June 2018',
+      'طراحی محتوای شبکه‌های اجتماعی (بنر، پوستر و استوری اینستاگرام) متناسب با مخاطب هدف؛ برندینگ بصری کمپین‌های فصلی؛ استفاده از ابزارهای هوش مصنوعی (ChatGPT, Gemini) جهت ایده‌پردازی و افزایش سرعت تحویل پروژه‌ها.',
+    startDate: 'تیر ۱۴۰۴',
+    endDate: 'شهریور ۱۴۰۴',
   },
 ]
 

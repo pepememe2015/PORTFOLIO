@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
@@ -8,18 +9,36 @@ import { ThemeSwitcher } from './theme-switcher'
 export default function Nav() {
   const path = usePathname()
 
+  useEffect(() => {
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      const message = event.reason?.message || '';
+      if (
+        message.includes('Transition was aborted') ||
+        message.includes('timeout in DOM update') ||
+        event.reason?.name === 'AbortError'
+      ) {
+        event.preventDefault();
+      }
+    };
+
+    window.addEventListener('unhandledrejection', handleUnhandledRejection);
+    return () => {
+      window.removeEventListener('unhandledrejection', handleUnhandledRejection);
+    };
+  }, []);
+
   const links = [
     {
       path: '/',
-      text: 'Home',
+      text: 'خانه',
     },
     {
       path: '/about',
-      text: 'About',
+      text: 'درباره من',
     },
     {
       path: '/work',
-      text: 'Work',
+      text: 'نمونه کارها',
     },
   ]
 
