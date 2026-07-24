@@ -1,8 +1,46 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import PROJECTS, { Project } from '@/data/projects'
 import { ChevronRight, ChevronLeft, X, Maximize2 } from 'lucide-react'
+
+interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
+  src: string
+}
+
+function LazyVideo({ src, className, ...props }: LazyVideoProps) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const videoElement = videoRef.current
+    if (!videoElement) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+
+    observer.observe(videoElement)
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  return (
+    <video
+      ref={videoRef}
+      src={isInView ? src : undefined}
+      className={className}
+      {...props}
+    />
+  )
+}
 
 interface ProjectCardProps {
   project: Project
@@ -39,6 +77,7 @@ function ProjectCard({ project, onOpenLightbox }: ProjectCardProps) {
             className="w-full h-full border-none"
             src={project.iframeUrl}
             title={project.name}
+            loading="lazy"
           />
         </div>
       ) : project.assets ? (
@@ -63,7 +102,7 @@ function ProjectCard({ project, onOpenLightbox }: ProjectCardProps) {
                     asset.type === 'video' ? (
                       <>
                         {/* Blurred Dynamic Video Glow */}
-                        <video
+                        <LazyVideo
                           key={`${asset.url}-glow`}
                           className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 dark:opacity-20 scale-110 pointer-events-none"
                           src={asset.url}
@@ -72,7 +111,7 @@ function ProjectCard({ project, onOpenLightbox }: ProjectCardProps) {
                           muted
                           playsInline
                         />
-                        <video
+                        <LazyVideo
                           key={asset.url}
                           className="w-full h-full object-contain z-10 relative pointer-events-none bg-transparent"
                           src={asset.url}
