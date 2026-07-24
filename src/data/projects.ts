@@ -20,7 +20,7 @@ const PROJECTS: Project[] = [
     localPath: 'G:\\project\\music_project_final',
     badge: 'طراحی رابط کاربری و توسعه وب',
     isIframe: true,
-    iframeUrl: '/frontend/index.html',
+    iframeUrl: '/frontend/vibinoo.html',
   },
   {
     name: 'طراحی پوسترهای تبلیغاتی و کمپین‌ها',
