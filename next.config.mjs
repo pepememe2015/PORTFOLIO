@@ -1,3 +1,4 @@
+// Trigger GitHub Actions build
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
