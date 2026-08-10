@@ -1,30 +1,30 @@
 @font-face {
   font-family: 'PortadaLocal';
-  src: url('/fonts/PortadaARA-Light.otf') format('opentype');
+  src: url('../../public/fonts/PortadaARA-Light.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: 'PortadaLocal';
-  src: url('/fonts/PortadaARA-Regular.otf') format('opentype');
+  src: url('../../public/fonts/PortadaARA-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'PortadaLocal';
-  src: url('/fonts/PortadaARA-Semibold.otf') format('opentype');
+  src: url('../../public/fonts/PortadaARA-Semibold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'PortadaLocal';
-  src: url('/fonts/PortadaARA-Bold.otf') format('opentype');
+  src: url('../../public/fonts/PortadaARA-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'PortadaLocal';
-  src: url('/fonts/PortadaARA-Extrabold.otf') format('opentype');
+  src: url('../../public/fonts/PortadaARA-Extrabold.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
 }
@@ -78,6 +78,10 @@
   --shadow-shadow: var(--shadow);
   --font-weight-base: 300;
   --font-weight-heading: 900;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

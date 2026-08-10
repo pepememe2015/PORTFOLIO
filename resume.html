@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزومه امیر عباس حقیقتی | طراح گرافیک و توسعه‌دهنده وب</title>
+    <style>
+        /* Load PortadaLocal Font from Local Files */
+        @font-face {
+            font-family: 'PortadaLocal';
+            src: url('public/fonts/PortadaARA-Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'PortadaLocal';
+            src: url('public/fonts/PortadaARA-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'PortadaLocal';
+            src: url('public/fonts/PortadaARA-Semibold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'PortadaLocal';
+            src: url('public/fonts/PortadaARA-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'PortadaLocal';
+            src: url('public/fonts/PortadaARA-Extrabold.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        :root {
+            --background: #DBE7ED;
+            --secondary-background: #ffffff;
+            --foreground: #1a1a1a;
+            --main: #39829B;
+            --border: #000000;
+            --shadow-color: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'PortadaLocal', 'Vazirmatn', Tahoma, Geneva, sans-serif !important;
+        }
+
+        body {
+            background-color: var(--background);
+            background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+            color: var(--foreground);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--secondary-background);
+            border: 4px solid var(--border);
+            box-shadow: 8px 8px 0px var(--shadow-color);
+            padding: 35px 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* Neobrutalism UI Helpers */
+        .card {
+            background: #ffffff;
+            border: 3px solid var(--border);
+            box-shadow: 4px 4px 0px var(--shadow-color);
+            border-radius: 5px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .badge {
+            background: var(--main);
+            color: #ffffff;
+            border: 2px solid var(--border);
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            border-radius: 5px;
+            display: inline-block;
+            box-shadow: 2px 2px 0px var(--shadow-color);
+        }
+
+        /* Header Style */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .header-info h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--foreground);
+            margin-bottom: 4px;
+        }
+
+        .header-info p {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--main);
+        }
+
+        .header-star {
+            position: absolute;
+            top: 10px;
+            right: 40%;
+            transform: rotate(15deg);
+            pointer-events: none;
+        }
+
+        .qr-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            position: relative;
+        }
+
+        .qr-code {
+            width: 110px;
+            height: 110px;
+            border: 3px solid var(--border);
+            box-shadow: 4px 4px 0px var(--shadow-color);
+            padding: 3px;
+            background: white;
+            transition: transform 0.2s;
+        }
+
+        .qr-code:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--shadow-color);
+        }
+
+        .qr-text {
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: var(--foreground);
+            text-decoration: underline;
+        }
+
+        /* Red pointing arrow callout */
+        .qr-arrow-wrapper {
+            position: absolute;
+            left: 125px; /* To the right of the QR code in RTL */
+            right: auto;
+            top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .qr-arrow-text {
+            font-size: 0.7rem;
+            font-weight: 900;
+            color: #FF6B6B;
+            border: 2px solid #000;
+            background: #fff;
+            padding: 4px 8px;
+            box-shadow: 2px 2px 0px #000;
+            border-radius: 4px;
+            transform: rotate(-4deg);
+        }
+
+        .qr-arrow-svg {
+            width: 32px;
+            height: 32px;
+            filter: drop-shadow(1px 1px 0px #000);
+        }
+
+        /* Main Content Grid */
+        .content {
+            display: flex;
+            gap: 25px;
+        }
+
+        .right-column {
+            flex: 1.8;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .left-column {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--main);
+            border: 2px solid var(--border);
+            transform: rotate(45deg);
+        }
+
+        /* Experience Styles */
+        .experience-card {
+            padding-left: 55px !important;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .experience-item {
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .experience-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+        }
+
+        .experience-date {
+            font-size: 0.72rem;
+            background: var(--background);
+            border: 1.5px solid var(--border);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .experience-desc {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #333333;
+            text-align: justify;
+        }
+
+        /* Contact Details */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            font-size: 0.82rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-icon {
+            width: 18px;
+            height: 18px;
+            background: var(--main);
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        /* Skills Progress Bars */
+        .card-skills {
+            padding-left: 50px !important;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .skill-group {
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-label-wrapper {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 1px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--main);
+            border-radius: 8px;
+            border-right: 1.5px solid var(--border);
+        }
+
+        /* Bio/Intro */
+        .card-bio {
+            padding-left: 50px !important;
+        }
+
+        .bio-text {
+            font-size: 0.82rem;
+            line-height: 1.6;
+            text-align: justify;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Neobrutalist Abstract Shapes positioned in Left Gutter */
+        .shape-donut {
+            position: absolute;
+            top: 50px;
+            left: 15px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 4px solid var(--border);
+            background: transparent;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .shape-diamond {
+            position: absolute;
+            bottom: 20px;
+            left: 18px;
+            width: 14px;
+            height: 14px;
+            background: #FFAEBC;
+            border: 2px solid var(--border);
+            box-shadow: 2px 2px 0px var(--shadow-color);
+            transform: rotate(45deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape-cylinder {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            width: 12px;
+            height: 32px;
+            background: #FFAEBC;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            transform: rotate(12deg);
+            box-shadow: 2px 2px 0px var(--shadow-color);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .shape-arch {
+            position: absolute;
+            bottom: 25px;
+            left: 15px;
+            width: 24px;
+            height: 12px;
+            background: #4EAA84;
+            border: 2px solid var(--border);
+            border-radius: 20px 20px 0 0;
+            transform: rotate(90deg);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .shape-starburst {
+            position: absolute;
+            top: 50px;
+            left: 18px;
+            color: #F4D068;
+            font-size: 1.4rem;
+            font-weight: 900;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body {
+                background: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page {
+                width: 210mm;
+                height: 297mm;
+                border: 4px solid var(--border) !important;
+                box-shadow: none !important;
+                page-break-after: avoid;
+                page-break-before: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-info">
+                <h1>امیر عباس حقیقتی</h1>
+                <p>طراح گرافیک و توسعه‌دهنده وب (Vibe Coding)</p>
+            </div>
+            
+            <!-- Rotating Star in Header -->
+            <div class="header-star">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F4D068" stroke="#000" stroke-width="2" width="28" height="28" style="filter: drop-shadow(1.5px 1.5px 0px rgba(0,0,0,1));">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+
+            <div class="qr-section">
+                <!-- Red arrow pointing to QR code -->
+                <div class="qr-arrow-wrapper">
+                    <span class="qr-arrow-text">برای پورتفولیو رو این کلیک کن</span>
+                    <svg class="qr-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 3C16 8 12 12 5 12"/>
+                        <path d="M9 16L5 12L9 8"/>
+                    </svg>
+                </div>
+                
+                <!-- Make QR Code clickable pointing to portfolio -->
+                <a href="https://vibinoo.ir" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; position: relative; z-index: 2;">
+                    <img class="qr-code" src="public/qrcode.png" alt="QR Code">
+                    <span class="qr-text">vibinoo.ir</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- MAIN BODY -->
+        <div class="content">
+            <!-- RIGHT COLUMN (EXPERIENCE) -->
+            <div class="right-column">
+                <h2 class="section-title">سوابق شغلی</h2>
+                
+                <div class="card experience-card">
+                    <!-- Cylinder Shape in Gutter -->
+                    <div class="shape-cylinder"></div>
+
+                    <!-- Job 1 -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">توسعه‌دهنده و طراح | پروژه شخصی (Vibinoo)</span>
+                            <span class="experience-date">مهر ۱۴۰۳ - اکنون</span>
+                        </div>
+                        <p class="experience-desc">
+                            توسعه صفر تا صد پلتفرم پخش آنلاین موسیقی با رویکرد استفاده از هوش مصنوعی (Anti Gravity, Gemini, DeepSeek) به عنوان دستیار اصلی کدنویسی و طراحی رابط کاربری در Figma و Illustrator.
+                        </p>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 2px dashed var(--border); margin: 6px 0; position: relative; z-index: 1;">
+                    
+                    <!-- Job 2 -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">طراح گرافیک (کارآموزی) | پرو وان (Pro One)</span>
+                            <span class="experience-date">آذر ۱۴۰۳ - اسفند ۱۴۰۳</span>
+                        </div>
+                        <p class="experience-desc">
+                            طراحی بنر، پوستر، رول‌آپ، آیکون و هویت بصری کامل برای کمپین‌های تبلیغاتی آنلاین و آفلاین؛ مدیریت محتوای گرافیکی وب‌سایت و شبکه‌های اجتماعی؛ تحلیل روندهای روز و کار حرفه‌ای با Photoshop و Illustrator.
+                        </p>
+                    </div>
+
+                    <hr style="border: none; border-top: 2px dashed var(--border); margin: 6px 0; position: relative; z-index: 1;">
+
+                    <!-- Job 3 -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">گرافیست پروژه‌ای | مجموعه ورزشی استخر مفتح</span>
+                            <span class="experience-date">تیر ۱۴۰۴ - شهریور ۱۴۰۴</span>
+                        </div>
+                        <p class="experience-desc">
+                            طراحی محتوای شبکه‌های اجتماعی (بنر، پوستر و استوری اینستاگرام) متناسب با مخاطب هدف؛ برندینگ بصری کمپین‌های فصلی؛ استفاده از ابزارهای هوش مصنوعی (ChatGPT, Gemini) جهت ایده‌پردازی و افزایش سرعت تحویل پروژه‌ها.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEFT COLUMN (SKILLS & CONTACT) -->
+            <div class="left-column">
+                <!-- BIO CARD -->
+                <div class="card card-bio">
+                    <!-- Donut & Diamond Shapes in Gutter -->
+                    <div class="shape-donut"></div>
+                    <div class="shape-diamond"></div>
+
+                    <h2 class="section-title">درباره من</h2>
+                    <p class="bio-text">
+                        دانشجوی ترم ۵ رشته ارتباط تصویری دانشگاه آزاد اسلامی تهران مرکزی. علاقه‌مند به تلفیق هنر طراحی گرافیک با برنامه‌نویسی و توسعه وب به روش Vibe Coding با بهره‌گیری از ابزارهای هوش مصنوعی.
+                    </p>
+                </div>
+
+                <!-- SKILLS CARD -->
+                <div class="card card-skills">
+                    <!-- Starburst & Arch Shapes in Gutter -->
+                    <div class="shape-starburst">✦</div>
+                    <div class="shape-arch"></div>
+
+                    <h2 class="section-title">مهارت‌ها</h2>
+                    
+                    <div class="skill-group">
+                        <div class="skill-label-wrapper">
+                            <span>Adobe Illustrator</span>
+                            <span>۸۰٪</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-label-wrapper">
+                            <span>Figma (UI/UX)</span>
+                            <span>۶۰٪</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-label-wrapper">
+                            <span>Vibe Coding</span>
+                            <span>۸۰٪</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-label-wrapper">
+                            <span>هوش مصنوعی (AI Tools)</span>
+                            <span>۸۰٪</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-label-wrapper">
+                            <span>Adobe Photoshop</span>
+                            <span>۶۰٪</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-label-wrapper">
+                            <span>Adobe Premiere Pro</span>
+                            <span>۶۰٪</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACT CARD -->
+                <div class="card">
+                    <h2 class="section-title">راه‌های ارتباطی</h2>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <span class="contact-icon" style="background: #eef4f7; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; border: 1.5px solid var(--border);">✉</span>
+                            <span>amirhaghighati84@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
