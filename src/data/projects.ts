@@ -57,12 +57,17 @@ const PROJECTS: Project[] = [
     ],
   },
   {
-    name: 'ویدیو آرت با هوش مصنوعی',
-    description: 'تولید ویدیو آرت‌های خلاقانه و مفاهیم هنری متحرک با استفاده از ابزارها و مدل‌های هوش مصنوعی پیشرفته نظیر Veo.',
+    name: 'تولید ویدیو آرت و شبیه‌سازی عمرانی با هوش مصنوعی',
+    description: 'تولید ویدیو آرت، انیمیشن‌سازی فریم‌به‌فریم و شبیه‌سازی سه بعدی هوشمند پروژه‌های بزرگ عمرانی و راهسازی (نظیر پروژه مسیر اراک - سلفچگان - راهجرد) با استفاده از مدل‌های هوش مصنوعی پیشرفته نظیر Veo و ابزارهای گرافیکی.',
     localPath: 'G:\\project\\resume\\nemoone kaar\\AI',
-    badge: 'ویدیو هوش مصنوعی (AI Video)',
+    badge: 'ویدیو و تصویرسازی هوش مصنوعی (AI Content & Video)',
     assets: [
       { type: 'video', url: '/nemoone kaar/AI/با_veo_میخوام_بسازم (1) (1).mp4' },
+      { type: 'image', url: '/nemoone kaar/AI/road_1.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_2.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_3.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_4.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_5.webp' },
     ],
   },
   {
