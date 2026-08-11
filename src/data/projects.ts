@@ -25,6 +25,13 @@ const PROJECTS: Project[] = [
     iframeUrl: '/frontend/vibinoo.html',
   },
   {
+    name: 'طراحی هویت بصری و ست اداری برند ورده (Verde)',
+    description: 'طراحی کامل و جامع هویت بصری، اقلام اداری، پاکت‌نامه‌ها، سربرگ‌ها، کارت‌های ویزیت، کیسه‌های تبلیغاتی و البسه پرسنلی برند ورده.',
+    localPath: 'G:\\project\\resume\\nemoone kaar\\ست اداری verde',
+    badge: 'طراحی هویت بصری و برندینگ',
+    assets: verdeSorted as ProjectAsset[],
+  },
+  {
     name: 'طراحی پوسترهای تبلیغاتی و کمپین‌ها',
     description: 'مجموعه‌ای از پوسترهای تبلیغاتی، بنرها، رول‌آپ‌ها و طراحی‌های تی‌شرت و استوری برای برندهای مختلف نظیر استخر مفتح، Nutrilab، و Pro One.',
     localPath: 'G:\\project\\resume\\nemoone kaar\\Poster',
@@ -115,13 +122,6 @@ const PROJECTS: Project[] = [
       { type: 'image', url: '/nemoone kaar/Ferrari/page_5.jpg' },
       { type: 'image', url: '/nemoone kaar/Ferrari/page_6.jpg' },
     ],
-  },
-  {
-    name: 'طراحی هویت بصری و ست اداری برند ورده (Verde)',
-    description: 'طراحی کامل و جامع هویت بصری، اقلام اداری، پاکت‌نامه‌ها، سربرگ‌ها، کارت‌های ویزیت، کیسه‌های تبلیغاتی و البسه پرسنلی برند ورده.',
-    localPath: 'G:\\project\\resume\\nemoone kaar\\ست اداری verde',
-    badge: 'طراحی هویت بصری و برندینگ',
-    assets: verdeSorted as ProjectAsset[],
   },
 ]
 
