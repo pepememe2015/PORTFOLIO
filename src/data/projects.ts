@@ -68,6 +68,11 @@ const PROJECTS: Project[] = [
       { type: 'image', url: '/nemoone kaar/AI/road_3.webp' },
       { type: 'image', url: '/nemoone kaar/AI/road_4.webp' },
       { type: 'image', url: '/nemoone kaar/AI/road_5.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_6.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_7.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_8.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_9.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/road_10.webp' },
     ],
   },
   {
