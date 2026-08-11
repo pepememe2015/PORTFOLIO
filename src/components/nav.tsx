@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import { ThemeSwitcher } from './theme-switcher'
 
@@ -21,6 +21,8 @@ const links = [
 
 export default function Nav() {
   const [activeSection, setActiveSection] = useState('home')
+  const isManualScrolling = useRef(false)
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     const observerOptions = {
@@ -30,6 +32,8 @@ export default function Nav() {
     }
 
     const observer = new IntersectionObserver((entries) => {
+      if (isManualScrolling.current) return
+
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id)
@@ -42,8 +46,35 @@ export default function Nav() {
       if (el) observer.observe(el)
     })
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current)
+    }
   }, [])
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+
+    // Disable observer updates during smooth scroll
+    isManualScrolling.current = true
+    setActiveSection(id)
+
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+
+    // Clear any existing timeout
+    if (scrollTimeout.current) clearTimeout(scrollTimeout.current)
+
+    // Re-enable observer after smooth scroll animation completes (~800ms)
+    scrollTimeout.current = setTimeout(() => {
+      isManualScrolling.current = false
+    }, 800)
+  }
 
   return (
     <div className="fixed top-5 left-0 z-50 w-full">
@@ -58,7 +89,7 @@ export default function Nav() {
                 isActive ? 'border-border' : 'border-transparent',
               )}
               href={`#${link.id}`}
-              onClick={() => setActiveSection(link.id)}
+              onClick={(e) => handleLinkClick(e, link.id)}
             >
               {link.text}
             </a>
