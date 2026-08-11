@@ -103,6 +103,11 @@ const PROJECTS: Project[] = [
     localPath: 'G:\\project\\resume\\nemoone kaar\\AI',
     badge: 'طراحی کاراکتر هوش مصنوعی',
     assets: [
+      { type: 'image', url: '/nemoone kaar/AI/character_1.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/character_2.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/character_3.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/character_4.webp' },
+      { type: 'image', url: '/nemoone kaar/AI/character_5.webp' },
       { type: 'image', url: '/nemoone kaar/AI/photo_5976541344685560441_w.jpg' },
       { type: 'image', url: '/nemoone kaar/AI/photo_5863766752011947603_w.jpg' },
       { type: 'image', url: '/nemoone kaar/AI/photo_5870714759261392502_w.jpg' },
