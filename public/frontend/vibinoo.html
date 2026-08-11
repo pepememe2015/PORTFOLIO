@@ -58,6 +58,7 @@
     }
     </script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @font-face { font-family: 'iOS15'; src: url('/frontend/font/Ios15Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
@@ -1477,7 +1478,40 @@ async function loadHome() {
     window.currentHomeSubPageType = null; 
     window.homeBackStack = []; 
     document.getElementById('dynamic-content').innerHTML = `<div class="hero-section"><div class="greeting-section"><h1><i class="${window.getGreeting().icon}"></i> ${window.getGreeting().text}</h1><div class="greeting-sub" data-i18n="welcome">${translations[currentLang].welcome}</div></div><button class="shuffle-btn" onclick="shuffleAllSongs()"><i class="fas fa-random"></i> <span data-i18n="shufflePlay">${translations[currentLang].shufflePlay}</span></button></div><div id="homeSectionsContainer"><div class="search-loading"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`; 
-    try { const res = await fetch('/songs/'); let __d1 = await res.json(); currentSongs = __d1.items ? __d1.items : __d1; newSongs = [...currentSongs].sort((a,b)=>b.id-a.id); popularSongs = [...currentSongs].sort((a,b)=>(b.like_count||0)-(a.like_count||0)); if (token) { const likesRes = await fetch('/liked-songs/', {headers:{'Authorization':`Bearer ${token}`}}); if (likesRes.ok) { let _likeData = await likesRes.json(); userLikes = (_likeData.items ? _likeData.items : _likeData).map(s=>s.id); } await loadUserPlayHistory(); } await checkLikedStatus(currentSongs); analyzeTopArtists(); generateRecommendations(); renderHomeSections(); } catch(e) { window.showError(); } }
+    try {
+        const res = await fetch('/songs/');
+        if (!res.ok) throw new Error("API Offline");
+        let __d1 = await res.json();
+        currentSongs = __d1.items ? __d1.items : __d1;
+    } catch(e) {
+        console.warn("Backend API unavailable, loading Vibinoo Interactive Demo Mode");
+        currentSongs = [
+            { id: 1, title: 'آبی (Abi)', artist: 'Ebi', album: 'شب نیلوفری', like_count: 1420, file: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+            { id: 2, title: 'قلب من', artist: 'شادمهر عقیلی', album: 'تصویر', like_count: 1280, file: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+            { id: 3, title: 'بهت قول میدم', artist: 'محسن یگانه', album: 'نگاه', like_count: 1850, file: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+            { id: 4, title: 'عکس قدیمی', artist: 'شهاب مظفری', album: 'تک آهنگ', like_count: 940, file: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
+            { id: 5, title: 'عاشقم من', artist: 'فرزاد فرزین', album: 'شانزلیزه', like_count: 1100, file: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' },
+            { id: 6, title: 'دیوونه دوست داشتنی', artist: 'علیرضا طلیسچی', album: 'تک آهنگ', like_count: 1620, file: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
+            { id: 7, title: 'Vibe Chillout', artist: 'Lo-Fi Chill', album: 'Midnight Vibe', like_count: 2100, file: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' }
+        ];
+    }
+    newSongs = [...currentSongs].sort((a,b)=>b.id-a.id);
+    popularSongs = [...currentSongs].sort((a,b)=>(b.like_count||0)-(a.like_count||0));
+    if (token) {
+        try {
+            const likesRes = await fetch('/liked-songs/', {headers:{'Authorization':`Bearer ${token}`}});
+            if (likesRes.ok) {
+                let _likeData = await likesRes.json();
+                userLikes = (_likeData.items ? _likeData.items : _likeData).map(s=>s.id);
+            }
+            await loadUserPlayHistory();
+        } catch(err){}
+    }
+    await checkLikedStatus(currentSongs);
+    analyzeTopArtists();
+    generateRecommendations();
+    renderHomeSections();
+}
 
 function generateRecommendations() { 
     if (!currentSongs.length) { recommendedSongs = []; return; } 
