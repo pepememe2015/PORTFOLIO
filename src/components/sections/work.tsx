@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import PROJECTS, { Project } from '@/data/projects'
 import { ChevronRight, ChevronLeft, X, Maximize2 } from 'lucide-react'
 import { withBasePath } from '@/lib/utils'
+import { ProgressiveImage } from '@/components/ui/progressive-image'
 
 interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   src: string
@@ -123,23 +124,11 @@ function ProjectCard({ project, onOpenLightbox }: ProjectCardProps) {
                         />
                       </>
                     ) : (
-                      <>
-                        {/* Blurred Ambient Background */}
-                        <img
-                          className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 dark:opacity-25 scale-110 pointer-events-none"
-                          src={withBasePath(asset.url)}
-                          alt=""
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <img
-                          className="w-full h-full object-contain z-10 relative pointer-events-none"
+                        <ProgressiveImage
                           src={withBasePath(asset.url)}
                           alt={`${project.name} - ${idx + 1}`}
-                          loading="lazy"
-                          decoding="async"
+                          className="w-full h-full object-contain z-10 relative pointer-events-none"
                         />
-                      </>
                     )
                   )}
                 </div>
@@ -331,21 +320,11 @@ export default function Work() {
                             />
                           </div>
                         ) : (
-                          <div className="relative max-w-full max-h-[80vh] border-border border-4 rounded-base bg-secondary-background shadow-[8px_8px_0px_0px_var(--border)] overflow-hidden flex items-center justify-center">
-                            {/* Blurred Ambient Background */}
-                            <img
-                              className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 dark:opacity-25 scale-110 pointer-events-none"
+                          <div className="relative max-w-full max-h-[80vh] border-border border-4 rounded-base bg-secondary-background shadow-[8px_8px_0px_0px_var(--border)] overflow-hidden flex items-center justify-center min-h-[280px] min-w-[280px]">
+                            <ProgressiveImage
                               src={withBasePath(asset.url)}
-                              alt=""
-                              loading="lazy"
-                              decoding="async"
-                            />
-                            <img
+                              alt={`${activeLightbox.project.name} - ${idx + 1}`}
                               className="max-w-full max-h-[75vh] object-contain z-10 relative"
-                              src={withBasePath(asset.url)}
-                              alt=""
-                              loading="lazy"
-                              decoding="async"
                             />
                           </div>
                         )
