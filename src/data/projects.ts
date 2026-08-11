@@ -117,7 +117,6 @@ const PROJECTS: Project[] = [
       { type: 'image', url: '/nemoone kaar/AI/env_7.webp' },
       { type: 'image', url: '/nemoone kaar/AI/env_8.webp' },
       { type: 'image', url: '/nemoone kaar/AI/env_9.webp' },
-      { type: 'image', url: '/nemoone kaar/AI/photo_5976541344685560441_w.jpg' },
       { type: 'image', url: '/nemoone kaar/AI/photo_5863766752011947603_w.jpg' },
       { type: 'image', url: '/nemoone kaar/AI/photo_5870714759261392502_w.jpg' },
       { type: 'image', url: '/nemoone kaar/AI/photo_5881704498240098521_w.jpg' },
