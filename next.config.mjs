@@ -1,6 +1,5 @@
-// Trigger GitHub Actions build
 /** @type {import('next').NextConfig} */
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS === 'true' ? '/PORTFOLIO' : '');
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS ? '/PORTFOLIO' : '');
 
 const nextConfig = {
   output: 'export',
@@ -18,4 +17,3 @@ const nextConfig = {
 }
 
 export default nextConfig
-
