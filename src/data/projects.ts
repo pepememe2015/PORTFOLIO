@@ -51,6 +51,7 @@ const PROJECTS: Project[] = [
     badge: 'طراحی لوگو و لوگوموشن',
     assets: [
       { type: 'video', url: '/nemoone kaar/logomotion.mp4' },
+      { type: 'image', url: '/nemoone kaar/logo/verde_logo_mark.webp' },
       { type: 'image', url: '/nemoone kaar/logo/logo.jpg' },
       { type: 'image', url: '/nemoone kaar/logo/230a829c-9d0b-4900-b9cd-29bd8ae40148.jpe' },
       { type: 'image', url: '/nemoone kaar/logo/7547a49f-9d47-4fd6-b1c0-907a0cd5e099.jpe' },
