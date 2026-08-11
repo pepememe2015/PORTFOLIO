@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from 'clsx'
+import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
@@ -9,8 +10,7 @@ export function withBasePath(path: string) {
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('//')) {
     return path
   }
-  const isGithubActions = process.env.GITHUB_ACTIONS === 'true'
-  const basePath = isGithubActions ? '/PORTFOLIO' : ''
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS === 'true' ? '/PORTFOLIO' : '')
   const cleanPath = path.startsWith('/') ? path : `/${path}`
   return `${basePath}${cleanPath}`
 }
