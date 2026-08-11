@@ -6,12 +6,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function withBasePath(path: string) {
-  if (!path) return ''
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('//')) {
     return path
   }
-  const basePath = '/PORTFOLIO'
+  const isGithubActions = process.env.GITHUB_ACTIONS === 'true'
+  const basePath = isGithubActions ? '/PORTFOLIO' : ''
   const cleanPath = path.startsWith('/') ? path : `/${path}`
   return `${basePath}${cleanPath}`
 }
-

@@ -3,6 +3,7 @@ import { Sparkles, Star, GraduationCap, User, Calendar } from 'lucide-react'
 import Experience from '@/components/sections/experience'
 import Skills from '@/components/sections/skills'
 import Work from '@/components/sections/work'
+import { withBasePath } from '@/lib/utils'
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
           {/* Floating Neobrutalist Abstract Shapes */}
           <div className="absolute -top-12 -left-12 w-24 sm:w-28 h-24 sm:h-28 bg-main/5 rounded-full border-2 border-border dark:border-foreground/30 border-dashed pointer-events-none select-none z-0" />
           
-          <div className="absolute top-8 left-5 sm:left-24 animate-[spin_10s_linear_infinite] pointer-events-none select-none z-0 block">
+          <div className="absolute top-8 left-5 sm:left-24 animate-[spin_10s_linear_infinite] pointer-events-none select-none z-20 block">
             <Star className="h-6 sm:h-8 w-6 sm:w-8 text-[#F4D068] fill-[#F4D068] stroke-border stroke-2 filter drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]" />
           </div>
 
@@ -29,30 +30,47 @@ export default function Home() {
           <div className="absolute bottom-16 right-1/3 text-xl font-bold font-mono text-foreground/15 pointer-events-none select-none z-0">×</div>
 
           {/* Content Wrapper */}
-          <div className="relative z-10 flex flex-col gap-4 pl-6 sm:pl-0 sm:max-w-[75%]">
-            <div className="flex items-center gap-3">
-              <div className="bg-main text-main-foreground border border-border rounded-base p-1.5 shadow-[1px_1px_0px_0px_var(--border)] select-none">
-                <Sparkles className="h-5 w-5" />
+          <div className="relative z-10 flex flex-col-reverse md:flex-row items-center md:items-start justify-between gap-8">
+            {/* Text Content */}
+            <div className="flex flex-col gap-4 md:max-w-[65%] w-full">
+              <div className="flex items-center gap-3">
+                <div className="bg-main text-main-foreground border border-border rounded-base p-1.5 shadow-[1px_1px_0px_0px_var(--border)] select-none">
+                  <Sparkles className="h-5 w-5" />
+                </div>
+                <span className="font-heading text-xs sm:text-sm text-foreground/80 tracking-wide bg-main/10 px-2 py-0.5 border border-border/20 rounded-full">
+                  پورتفولیو رسمی
+                </span>
               </div>
-              <span className="font-heading text-xs sm:text-sm text-foreground/80 tracking-wide bg-main/10 px-2 py-0.5 border border-border/20 rounded-full">
-                پورتفولیو رسمی
-              </span>
+
+              <h1 className="text-xl sm:text-3xl font-heading mt-2 leading-tight">
+                امیر عباس حقیقتی
+              </h1>
+              
+              <p className="text-sm sm:text-lg font-heading text-main -mt-1">
+                طراح و گرافیست / توسعه‌دهنده وب
+              </p>
+              
+              <hr className="border-border border-t-2 my-2" />
+
+              <div className="text-base sm:text-lg leading-relaxed flex flex-col gap-4">
+                <p>
+                  سلام! من امیر عباس حقیقتی هستم؛ دانشجوی ترم ۵ رشته ارتباط تصویری دانشگاه آزاد اسلامی تهران مرکزی، طراح و گرافیست و توسعه‌دهنده وب با رویکرد Vibe Coding.
+                </p>
+              </div>
             </div>
 
-            <h1 className="text-xl sm:text-3xl font-heading mt-2 leading-tight">
-              امیر عباس حقیقتی
-            </h1>
-            
-            <p className="text-sm sm:text-lg font-heading text-main -mt-1">
-              طراح و گرافیست / توسعه‌دهنده وب
-            </p>
-            
-            <hr className="border-border border-t-2 my-2" />
-
-            <div className="text-base sm:text-lg leading-relaxed flex flex-col gap-4">
-              <p>
-                سلام! من امیر عباس حقیقتی هستم؛ دانشجوی ترم ۵ رشته ارتباط تصویری دانشگاه آزاد اسلامی تهران مرکزی، طراح و گرافیست و توسعه‌دهنده وب با رویکرد Vibe Coding.
-              </p>
+            {/* Profile Image (Blob) */}
+            <div className="relative shrink-0 select-none md:mt-2">
+              {/* Outer decorative solid shadow blob */}
+              <div className="absolute inset-0 bg-border translate-x-2 translate-y-2 z-0 animate-morph" />
+              {/* Blob Image Container */}
+              <div className="relative w-40 h-40 sm:w-48 sm:h-48 border-2 border-border overflow-hidden bg-main z-10 animate-morph">
+                <img 
+                  src={withBasePath('/penguin.jpg')} 
+                  alt="امیر عباس حقیقتی" 
+                  className="w-full h-full object-cover scale-135"
+                />
+              </div>
             </div>
           </div>
         </div>

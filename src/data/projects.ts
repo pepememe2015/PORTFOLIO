@@ -3,6 +3,8 @@ export interface ProjectAsset {
   url: string
 }
 
+import verdeSorted from './verde_sorted.json'
+
 export interface Project {
   name: string
   description: string
@@ -102,6 +104,13 @@ const PROJECTS: Project[] = [
       { type: 'image', url: '/nemoone kaar/Ferrari/page_5.jpg' },
       { type: 'image', url: '/nemoone kaar/Ferrari/page_6.jpg' },
     ],
+  },
+  {
+    name: 'طراحی هویت بصری و ست اداری برند ورده (Verde)',
+    description: 'طراحی کامل و جامع هویت بصری، اقلام اداری، پاکت‌نامه‌ها، سربرگ‌ها، کارت‌های ویزیت، کیسه‌های تبلیغاتی و البسه پرسنلی برند ورده.',
+    localPath: 'G:\\project\\resume\\nemoone kaar\\ست اداری verde',
+    badge: 'طراحی هویت بصری و برندینگ',
+    assets: verdeSorted as ProjectAsset[],
   },
 ]
 

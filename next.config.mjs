@@ -1,8 +1,10 @@
 // Trigger GitHub Actions build
 /** @type {import('next').NextConfig} */
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+
 const nextConfig = {
   output: 'export',
-  basePath: '/PORTFOLIO',
+  basePath: isGithubActions ? '/PORTFOLIO' : '',
   images: {
     unoptimized: true,
   },
